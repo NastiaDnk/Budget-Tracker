@@ -24,5 +24,10 @@ namespace BudgetTracker.Views
         {
             InitializeComponent();
         }
+
+        private void FindUSDBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
