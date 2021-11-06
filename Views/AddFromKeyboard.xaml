@@ -1,0 +1,92 @@
+﻿<UserControl x:Class="BudgetTracker.Views.AddFromKeyboard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BudgetTracker.Views"
+             mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DesignHeight="266.6" d:DesignWidth="1100">
+    <Grid x:Name="MainGrid" Background="White">
+        <materialDesign:TransitioningContent x:Name="TrainsitionContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.8}">
+            <Grid>
+                <Grid Width="320" HorizontalAlignment="Left" Margin="200,25,0,10.4" >
+                    <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                        <ListViewItem>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Background="#FFF0B78D" Width="100" Height="54">
+                                    <TextBlock Text="Date: " TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" TextWrapping="Wrap" Width="100"/>
+                                </StackPanel>
+                                <TextBox x:Name="dateTb" FontSize="18" Margin="1" Width="190" VerticalAlignment="Center" Background="#FFF0B78D" Height="55">
+
+                                </TextBox>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Background="#FFF0B78D" Width="100" Height="54">
+                                    <TextBlock Text="Type: " TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" TextWrapping="Wrap" Width="100"/>
+                                </StackPanel>
+                                <TextBox x:Name="typeTb" FontSize="18" Margin="1" Width="190" VerticalAlignment="Center" Background="#FFF0B78D" Height="55">
+
+                                </TextBox>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Background="#FFF0B78D" Width="100" Height="54">
+                                    <TextBlock Text="Subtype: " TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" TextWrapping="Wrap" Width="100"/>
+                                </StackPanel>
+                                <TextBox x:Name="subtypeTb" FontSize="18" Margin="1" Width="190" VerticalAlignment="Center" Background="#FFF0B78D" Height="55">
+
+                                </TextBox>
+                            </StackPanel>
+                        </ListViewItem>
+                    </ListView>
+                </Grid>
+                <Grid Width="316" HorizontalAlignment="Right" Margin="0,25,264,10.4">
+                    <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListViewItem>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Background="#FFF0B78D" Width="100" Height="54">
+                                    <TextBlock Text="Sum: " TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" TextWrapping="Wrap" Width="100"/>
+                                </StackPanel>
+                                <TextBox x:Name="sumTb" FontSize="18" Margin="1" Width="190" VerticalAlignment="Center" Background="#FFF0B78D" Height="55">
+
+                                </TextBox>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Background="#FFF0B78D" Width="100" Height="54">
+                                    <TextBlock Text="Currency: " TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" TextWrapping="Wrap" Width="100"/>
+                                </StackPanel>
+                                <TextBox x:Name="currencyTb" FontSize="18" Margin="1" Width="190" VerticalAlignment="Center" Background="#FFF0B78D" Height="55">
+
+                                </TextBox>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Background="#FFF0B78D" Width="100" Height="54">
+                                    <TextBlock Text="Rate: " TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" TextWrapping="Wrap" Width="100"/>
+                                </StackPanel>
+                                <TextBox x:Name="rateTb" FontSize="18" Margin="1" Width="190" VerticalAlignment="Center" Background="#FFF0B78D" Height="55">
+
+                                </TextBox>
+                            </StackPanel>
+                        </ListViewItem>
+                    </ListView>
+                </Grid>
+                <Grid Width="150" HorizontalAlignment="Right" Margin="0,70,100,61.4">
+                    <Button x:Name="Addbtn"  VerticalAlignment="Top" Width="140" Height="55" Background="#FFF0B78D" BorderBrush="#FFF0B78D" Click="Addbtn_Click">
+                        <TextBlock Text="Add"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" TextWrapping="Wrap"/>
+                    </Button>
+                    <Button x:Name="Clearbtn" Width="140" Height="55" Background="#FFF0B78D" BorderBrush="#FFF0B78D" VerticalAlignment="Bottom" Click="Clearbtn_Click">
+                        <TextBlock Text="Clear"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" TextWrapping="Wrap"/>
+                    </Button>
+                </Grid>
+            </Grid>
+        </materialDesign:TransitioningContent>
+    </Grid>
+</UserControl>

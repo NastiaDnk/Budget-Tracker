@@ -1,0 +1,129 @@
+﻿<Window x:Class="BudgetTracker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BudgetTracker"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="MainWindow" Height="800" Width="1404" WindowStyle="None" WindowStartupLocation="CenterScreen" Foreground="White">
+    <Window.Resources>
+        <Storyboard x:Key="OpenMenuBtn">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="MenuGrid">
+                <DiscreteDoubleKeyFrame KeyTime="0" Value="60"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="250"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="CloseMenuBtn">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="MenuGrid">
+                <DiscreteDoubleKeyFrame KeyTime="0" Value="250"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="60"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="OpenMenuBtn">
+            <BeginStoryboard Storyboard="{StaticResource OpenMenuBtn}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="CloseMenuBtn">
+            <BeginStoryboard Storyboard="{StaticResource CloseMenuBtn}"/>
+        </EventTrigger>
+    </Window.Triggers>
+
+    <Grid x:Name="Mainwindow" MouseDown="Mainwindow_MouseDown" >
+        <Grid x:Name="TopPanel" Height="60" VerticalAlignment="Top" Background="#FFF0B78D" >
+            <TextBlock Text="Budget tracker" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22"/>
+
+            <StackPanel Margin="8"  VerticalAlignment="Top" HorizontalAlignment="Right"  Orientation="Horizontal">
+                <materialDesign:PopupBox HorizontalAlignment="Right" Margin="8" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Height="29"/>
+                <Button x:Name="OffBtn" Padding="0" Height="30" Width="30"  Background="#FFF0B78D" BorderBrush="#FFF0B78D" Click="OffBtn_Click">
+                    <materialDesign:PackIcon Kind="Power" Width="29" Height="30"/>
+                </Button>
+            </StackPanel>
+
+        </Grid>
+
+        <Grid x:Name="MenuGrid" Width="60"  HorizontalAlignment="Left" Background="#FFF0B78D" >
+            <StackPanel>
+                <Grid Height="150" Background="White">
+                    <Button x:Name="CloseMenuBtn"  Width="60" Padding="0" Height="60" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#FFF0B78D" BorderBrush="#FFF0B78D" Visibility="Collapsed" Click="CloseMenuBtn_Click" >
+                        <materialDesign:PackIcon Kind="ArrowLeft"/>
+                    </Button>
+                    <Button x:Name="OpenMenuBtn"  Width="60" Padding="0" Height="60" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#FFF0B78D" BorderBrush="#FFF0B78D" Click="OpenMenuBtn_Click">
+                        <materialDesign:PackIcon Kind="Menu"/>
+                    </Button>
+
+                </Grid>
+                <ListView x:Name="ListViewMenu" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="ListViewMenu_SelectionChanged">
+                    <ListViewItem Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="PencilPlus" VerticalAlignment="Center" Margin="14"/>
+                            <TextBlock Text="Input your data" Margin="20 10" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="FileMultiple" VerticalAlignment="Center" Margin="14"/>
+                            <TextBlock Text="Files" Margin="20 10" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Filter" VerticalAlignment="Center" Margin="14"/>
+                            <TextBlock Text="Sort" Margin="20 10" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem MinHeight="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="CurrencyUsd" VerticalAlignment="Center" Margin="14" />
+                            <TextBlock Text="Three dates with largest expenses in USD" MaxWidth="180" Margin="20 10" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18"  TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem MinHeight="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="ClockTimeNine" VerticalAlignment="Center" Margin="14" />
+                            <TextBlock Text="Expenses in 6-hour time span" MaxWidth="180" TextWrapping="Wrap" Margin="20 10" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem MinHeight="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Food" VerticalAlignment="Center" Margin="14" />
+                            <TextBlock Text="Food expenses (Less than 20 UAH)" TextWrapping="Wrap" Margin="20 10" MaxWidth="180" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem MinHeight="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Numeric5Circle" VerticalAlignment="Center" Margin="14" />
+                            <TextBlock Text="Five smallest   expenses" TextWrapping="Wrap" Margin="20 10" MaxWidth="180" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem MinHeight="60" Height="107">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="CurrencyEurOff" VerticalAlignment="Center" Margin="14" />
+                            <TextBlock Text="Expenses on the days of currency fluctuations" MaxWidth="180" TextWrapping="Wrap" Margin="20 10" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18"/>
+                        </StackPanel>
+                    </ListViewItem>
+                </ListView>
+            </StackPanel>
+        </Grid>
+
+        <Grid x:Name="MainTable" Margin="250,60,0,266.6">
+            <DataGrid x:Name="ExpensesTable">
+                <DataGrid.Columns >
+                    <DataGridTextColumn Header="№" Binding="{Binding Number}" Width="50"/>
+                    <DataGridTextColumn Header="Date and time" Binding="{Binding DisplayDate}" Width="200"/>
+                    <DataGridTextColumn Header="Type" Binding="{Binding Type}" MinWidth="150" />
+                    <DataGridTextColumn Header="Subtype" Binding="{Binding Subtype}" Width="150" />
+                    <DataGridTextColumn Header="Sum" Binding="{Binding Sum}" MinWidth="90" />
+                    <DataGridTextColumn Header="Currency" Binding="{Binding Currency}" MinWidth="90" />
+                    <DataGridTextColumn Header="Exchange Rate" Binding="{Binding ExchangeRate}" MinWidth="90" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+        <Grid x:Name="ChangeActions" Margin="250 531 0 0">
+
+        </Grid>
+    </Grid>
+</Window>
