@@ -5,8 +5,41 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BudgetTracker.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DesignHeight="266.6" d:DesignWidth="1100" Background="White">
     <Grid>
-            
+        <materialDesign:TransitioningContent x:Name="TrainsitionContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.8}">
+            <Grid>
+                <Grid Margin="10,10,0,32.4" HorizontalAlignment="Left" Width="399">
+                    <ListView HorizontalAlignment="Left" VerticalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="5,50,0,33" Grid.RowSpan="2">
+                        <ListViewItem Width="402" HorizontalAlignment="Left">
+                            <StackPanel Orientation="Horizontal" >
+                                <StackPanel>
+                                    <StackPanel  Orientation="Horizontal" Background="#FFF0B78D" Width="80" Height="91">
+                                    <materialDesign:PackIcon Kind="Euro" VerticalAlignment="Center" Width="60" Height="60" Margin="12"/>
+                                </StackPanel>
+                                <TextBlock Height="5" VerticalAlignment="Bottom" Margin="0,0,0,-0.6" Width="80" Background="#7E57C2"/>
+                            </StackPanel>
+                            <Button x:Name="FindRateChangesBtn" Width="300" Height="91" Background="#FFF0B78D" Click="FindRateChangesBtn_Click">
+                                    <TextBlock Text="Find expenses on the days of currency fluctation"  FontSize="22" TextWrapping="Wrap"/>
+                                </Button>
+                            </StackPanel>
+                        </ListViewItem>
+                    </ListView>
+                </Grid>
+                <Grid Margin="450,0,90,10" HorizontalAlignment="Right" Width="400">
+                    <DataGrid x:Name="ExchangeTable" Margin="-197,0,-80,-0.6" >
+                        <DataGrid.Columns >
+                            <DataGridTextColumn Header="Date and time" Binding="{Binding DisplayDate}" Width="150"/>
+                            <DataGridTextColumn Header="Type" Binding="{Binding Type}" MinWidth="80" />
+                            <DataGridTextColumn Header="Subtype" Binding="{Binding Subtype}" Width="100" />
+                            <DataGridTextColumn Header="Sum" Binding="{Binding Sum}" MinWidth="60" />
+                            <DataGridTextColumn Header="Currency" Binding="{Binding Currency}" MinWidth="100" />
+                            <DataGridTextColumn Header="Exchange Rate" Binding="{Binding ExchangeRate}" MinWidth="140" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Grid>
+        </materialDesign:TransitioningContent>
     </Grid>
 </UserControl>

@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using BudgetTracker.Models;
 
 namespace BudgetTracker.Views
@@ -40,9 +29,20 @@ namespace BudgetTracker.Views
 
         private void Addbtn_Click(object sender, RoutedEventArgs e)
         {
-            string sTime = dateTb.Text, sType = typeTb.Text, sSubtype = subtypeTb.Text, sSum = sumTb.Text, sCurrency = currencyTb.Text, sRate = rateTb.Text;
-            MainWindow.objExpenList.AddExpensesItem(sTime, sType, sSubtype, sSum, sCurrency, sRate); //call function to add an item
-            communication.Update();
+            try
+            {
+                string sTime = dateTb.Text, sType = typeTb.Text, sSubtype = subtypeTb.Text, sSum = sumTb.Text, sCurrency = currencyTb.Text, sRate = rateTb.Text;
+                if (sTime == "" || sType == "" || sSubtype == "" || sSum == "" || sCurrency == "" || sRate == "")
+                    throw new Exception("You haven't entered enough data.\nPlease, try once more!");
+                MainWindow.objExpenList.AddExpensesItem(sTime, sType, sSubtype, sSum, sCurrency, sRate); //call function to add an item
+                communication.Update();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
         }
     }
 }

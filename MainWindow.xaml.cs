@@ -37,6 +37,7 @@ namespace BudgetTracker
         private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int index = ListViewMenu.SelectedIndex;
+            MoveCursorMenu(index);
             switch (index)
             {
                 case 0:
@@ -55,6 +56,10 @@ namespace BudgetTracker
                     ChangeActions.Children.Clear();
                     ChangeActions.Children.Add(new DatesUSD());
                     break;
+                case 4:
+                    ChangeActions.Children.Clear();
+                    ChangeActions.Children.Add(new TimespanPanel());
+                    break;
                 case 5:
                     ChangeActions.Children.Clear();
                     ChangeActions.Children.Add(new FoodExpenses());
@@ -63,7 +68,17 @@ namespace BudgetTracker
                     ChangeActions.Children.Clear();
                     ChangeActions.Children.Add(new FiveSmallestPanel());
                     break;
+                case 7:
+                    ChangeActions.Children.Clear();
+                    ChangeActions.Children.Add(new RateChanges());
+                    break;
             }
+        }
+
+        private void MoveCursorMenu(int index)
+        {
+            TrainsitionContentSlide.OnApplyTemplate();
+            GridCursor.Margin = new Thickness(0, 0 + (80 * index), 0, 0); // move left menu line
         }
 
         private void OpenMenuBtn_Click(object sender, RoutedEventArgs e)
@@ -85,17 +100,10 @@ namespace BudgetTracker
 
         private void Mainwindow_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            DragMove();
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
         }
 
-        private void UpdateTable(Expenses exObj)
-        {
-            ExpensesTable.Items.Clear();
-            for (int i = 0; i < exObj.ExpenseList.Count; ++i)
-            {
-                ExpensesTable.Items.Add(exObj.ExpenseList[i]);
-            }
-        }
 
         private void UpdateTable()
         {
@@ -104,6 +112,126 @@ namespace BudgetTracker
             {
                 ExpensesTable.Items.Add(objExpenList.ExpenseList[i]);
             }
+        }
+
+        private void Check()
+        {
+            if (objExpenList.ExpenseList.Count == 0)
+            {
+                throw new Exception("You haven't entered any expenses yet.\nYou can do it by yourself in " +
+                    "\"Input your data\" section\nor read data from file in section \"Files\".");
+            }
+        }
+
+        private void SortType_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Check();
+                objExpenList.SortType();//Sorting by type
+                UpdateTable();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void SortSubtype_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Check();
+                objExpenList.SortSubtype();//Sorting by subtype
+                UpdateTable();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void SortDate_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Check();
+                objExpenList.SortDate();//Sorting by date
+                UpdateTable();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void SortCurrency_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Check();
+                objExpenList.SortCurrency();//Sorting by currency
+                UpdateTable();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void SortSum_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Check();
+                objExpenList.SortSum();//Sorting by sum
+                UpdateTable();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void ClearList_Click(object sender, RoutedEventArgs e)
+        {
+
+            try
+            {
+                Check();
+                if (MessageBox.Show(
+                        String.Format($"Are you sure to delete all the expenses from your list? You cannot turn it back"),
+                        "Delete expenses",
+                        MessageBoxButton.YesNoCancel,
+                        MessageBoxImage.Question) == MessageBoxResult.Yes) // ask user if he is sure about deleting
+                    objExpenList.Clear();//Clear the list
+                UpdateTable();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void AboutBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(
+                            "The program \"Budget tracker\" is created to hepl people:\n" +
+                            "   ● Store their expenses conveniently\n" +
+                            "   ● Sort the expenses by different criterion\n" +
+                            "   ● Find smallest and largest expenses\n" +
+                            "   ● Track exepenses made on a particular day\n" +
+                            "   ● Track exepenses of a particulat type\n\n" +
+                            "The program \"Budget tracker\" is created by Anastasiia Danko",
+                            "About",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information); // information about program
+        }
+
+        private void ExpensesTable_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
         }
     }
 }

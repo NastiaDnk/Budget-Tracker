@@ -39,9 +39,9 @@ namespace BudgetTracker.Views
             }
         }
 
-        private void CheckEnouhgUSD(Expenses usdExpensList) //Function to check if there are 3 dates with sums in USD
+        private void CheckEnouhgUSD(List<ExpenseUSD> usdExpensList) //Function to check if there are 3 dates with sums in USD
         {
-            int tempCount = usdExpensList.ExpenseList.Count;
+            int tempCount = usdExpensList.Count;
             if (tempCount < count && tempCount != 0)
             {
                 Exception ex = new Exception("Less than " + count + " expenses are present in the table.\nOnly " + tempCount + " of them will be shown!");
@@ -72,15 +72,6 @@ namespace BudgetTracker.Views
                 }
             }
 
-            try
-            {
-                CheckEnouhgUSD(usdExpenses);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Attention", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-
             for (int i = 0; i < usdExpenses.ExpenseList.Count; ++i)
             {
                 if (usdCount.TryGetValue(usdExpenses[i].Time.Date, out double sum))
@@ -94,6 +85,15 @@ namespace BudgetTracker.Views
             {
                 ExpenseUSD temp = new ExpenseUSD(val.Key, val.Value);
                 expensUSDList.Add(temp);
+            }
+
+            try
+            {
+                CheckEnouhgUSD(expensUSDList);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Attention", MessageBoxButton.OK, MessageBoxImage.Information);
             }
 
         }

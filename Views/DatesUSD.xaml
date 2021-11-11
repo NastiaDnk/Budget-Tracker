@@ -14,10 +14,13 @@
                     <ListView HorizontalAlignment="Left" VerticalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="15,50,0,33" Grid.RowSpan="2">
                         <ListViewItem Width="402" HorizontalAlignment="Left">
                             <StackPanel Orientation="Horizontal" >
-                                <StackPanel  Orientation="Horizontal" Background="#FFF0B78D" Width="80" Height="91">
+                                <StackPanel>
+                                    <StackPanel  Orientation="Horizontal" Background="#FFF0B78D" Width="80" Height="91">
                                     <materialDesign:PackIcon Kind="Dollar" VerticalAlignment="Center" Width="60" Height="60" Margin="12"/>
                                 </StackPanel>
-                                <Button x:Name="FindUSDBtn" Width="300" Height="91" Background="#FFF0B78D" BorderBrush="#FFF0B78D" Click="FindUSDBtn_Click">
+                                <TextBlock Height="3" VerticalAlignment="Bottom" Margin="0,0,0,-0.6" Width="80" Background="#7E57C2"/>
+                            </StackPanel>
+                            <Button x:Name="FindUSDBtn" Width="300" Height="91" Background="#FFF0B78D" Click="FindUSDBtn_Click">
                                     <TextBlock Text="Find dates with 3 largest sums in USD"  FontSize="26" TextWrapping="Wrap"/>
                                 </Button>
                             </StackPanel>

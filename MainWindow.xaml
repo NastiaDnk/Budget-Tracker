@@ -20,6 +20,7 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="60"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        
     </Window.Resources>
 
     <Window.Triggers>
@@ -33,10 +34,12 @@
 
     <Grid x:Name="Mainwindow" MouseDown="Mainwindow_MouseDown" >
         <Grid x:Name="TopPanel" Height="60" VerticalAlignment="Top" Background="#FFF0B78D" >
-            <TextBlock Text="Budget tracker" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22"/>
+            <TextBlock Text="Budget tracker" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="43"/>
 
             <StackPanel Margin="8"  VerticalAlignment="Top" HorizontalAlignment="Right"  Orientation="Horizontal">
-                <materialDesign:PopupBox HorizontalAlignment="Right" Margin="8" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Height="29"/>
+                <Button x:Name="AboutBtn" Padding="0" Height="30" Margin="0 0 10 0" Width="30"  Background="#FFF0B78D" BorderBrush="#FFF0B78D" Click="AboutBtn_Click">
+                    <materialDesign:PackIcon Kind="InfoOutline" Width="29" Height="30"/>
+                </Button>
                 <Button x:Name="OffBtn" Padding="0" Height="30" Width="30"  Background="#FFF0B78D" BorderBrush="#FFF0B78D" Click="OffBtn_Click">
                     <materialDesign:PackIcon Kind="Power" Width="29" Height="30"/>
                 </Button>
@@ -46,83 +49,107 @@
 
         <Grid x:Name="MenuGrid" Width="60"  HorizontalAlignment="Left" Background="#FFF0B78D" >
             <StackPanel>
-                <Grid Height="150" Background="White">
-                    <Button x:Name="CloseMenuBtn"  Width="60" Padding="0" Height="60" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#FFF0B78D" BorderBrush="#FFF0B78D" Visibility="Collapsed" Click="CloseMenuBtn_Click" >
+                <Grid Height="60" Background="White">
+                    <StackPanel Width="190" Height="56" VerticalAlignment="Top" HorizontalAlignment="Left" Background="#FFF0B78D">
+                        <TextBlock Text="Menu" FontSize="30" HorizontalAlignment="Center">
+                            
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel Width="190" Height="4" VerticalAlignment="Bottom" HorizontalAlignment="Left" Background="#7E57C2">
+
+                    </StackPanel>
+                    <Button x:Name="CloseMenuBtn"  Width="60" Padding="0" Height="60" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#FFF0B78D"  Visibility="Collapsed" Click="CloseMenuBtn_Click" >
                         <materialDesign:PackIcon Kind="ArrowLeft"/>
                     </Button>
-                    <Button x:Name="OpenMenuBtn"  Width="60" Padding="0" Height="60" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#FFF0B78D" BorderBrush="#FFF0B78D" Click="OpenMenuBtn_Click">
+                    <Button x:Name="OpenMenuBtn"  Width="60" Padding="0" Height="60" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#FFF0B78D"  Click="OpenMenuBtn_Click">
                         <materialDesign:PackIcon Kind="Menu"/>
                     </Button>
 
                 </Grid>
-                <ListView x:Name="ListViewMenu" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="ListViewMenu_SelectionChanged">
-                    <ListViewItem Height="60">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="PencilPlus" VerticalAlignment="Center" Margin="14"/>
-                            <TextBlock Text="Input your data" Margin="20 10" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18"/>
-                        </StackPanel>
-                    </ListViewItem>
-                    <ListViewItem Height="60">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="FileMultiple" VerticalAlignment="Center" Margin="14"/>
-                            <TextBlock Text="Files" Margin="20 10" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18"/>
-                        </StackPanel>
-                    </ListViewItem>
-                    <ListViewItem Height="60">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Filter" VerticalAlignment="Center" Margin="14"/>
-                            <TextBlock Text="Sort" Margin="20 10" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18"/>
-                        </StackPanel>
-                    </ListViewItem>
-                    <ListViewItem MinHeight="60">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="CurrencyUsd" VerticalAlignment="Center" Margin="14" />
-                            <TextBlock Text="Three dates with largest expenses in USD" MaxWidth="180" Margin="20 10" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18"  TextWrapping="Wrap"/>
-                        </StackPanel>
-                    </ListViewItem>
-                    <ListViewItem MinHeight="60">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="ClockTimeNine" VerticalAlignment="Center" Margin="14" />
-                            <TextBlock Text="Expenses in 6-hour time span" MaxWidth="180" TextWrapping="Wrap" Margin="20 10" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18"/>
-                        </StackPanel>
-                    </ListViewItem>
-                    <ListViewItem MinHeight="60">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Food" VerticalAlignment="Center" Margin="14" />
-                            <TextBlock Text="Food expenses (Less than 20 UAH)" TextWrapping="Wrap" Margin="20 10" MaxWidth="180" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18"/>
-                        </StackPanel>
-                    </ListViewItem>
-                    <ListViewItem MinHeight="60">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Numeric5Circle" VerticalAlignment="Center" Margin="14" />
-                            <TextBlock Text="Five smallest   expenses" TextWrapping="Wrap" Margin="20 10" MaxWidth="180" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18"/>
-                        </StackPanel>
-                    </ListViewItem>
-                    <ListViewItem MinHeight="60" Height="107">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="CurrencyEurOff" VerticalAlignment="Center" Margin="14" />
-                            <TextBlock Text="Expenses on the days of currency fluctuations" MaxWidth="180" TextWrapping="Wrap" Margin="20 10" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18"/>
-                        </StackPanel>
-                    </ListViewItem>
-                </ListView>
+                <Grid>
+                    <materialDesign:TransitioningContent x:Name="TrainsitionContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.2}">
+                        <Grid x:Name="GridCursor" Margin="0 0 0 0" Background="#7E57C2" Width="8" HorizontalAlignment="Left" Height="80" VerticalAlignment="Top"/>
+                    </materialDesign:TransitioningContent>
+                    <ListView x:Name="ListViewMenu" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="ListViewMenu_SelectionChanged">
+                        <ListViewItem Height="80">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="PencilPlus" VerticalAlignment="Center" Margin="14"/>
+                                <TextBlock Text="Input your data" Margin="10 10" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17"/>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem Height="80">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="FileMultiple" VerticalAlignment="Center" Margin="14"/>
+                                <TextBlock Text="Files" Margin="10 10" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17"/>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem Height="80">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Filter" VerticalAlignment="Center" Margin="14"/>
+                                <TextBlock Text="Sort" Margin="10 10" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17"/>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem Height="80">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="CurrencyUsd" VerticalAlignment="Center" Margin="14" />
+                                <TextBlock Text="Three dates with largest expenses in USD" MaxWidth="180" Margin="10 10" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17"  TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem Height="80">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="ClockTimeNine" VerticalAlignment="Center" Margin="14" />
+                                <TextBlock Text="Expenses in 6-hour time span" MaxWidth="180" TextWrapping="Wrap" Margin="10 10" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17"/>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem Height="80">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Food" VerticalAlignment="Center" Margin="14" />
+                                <TextBlock Text="Food expenses (Less than 20 UAH)" TextWrapping="Wrap" Margin="10 10" MaxWidth="180" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17"/>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem Height="80">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Numeric5Circle" VerticalAlignment="Center" Margin="14" />
+                                <TextBlock Text="Five smallest expenses" TextWrapping="Wrap" Margin="10 10" MaxWidth="180" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17"/>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem  Height="80">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="CurrencyEurOff" VerticalAlignment="Center" Margin="14" />
+                                <TextBlock Text="Expenses on the days of currency fluctuations" MaxWidth="180" TextWrapping="Wrap" Margin="10 10" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17"/>
+                            </StackPanel>
+                        </ListViewItem>
+                    </ListView>
+                </Grid>
             </StackPanel>
         </Grid>
 
-        <Grid x:Name="MainTable" Margin="250,60,0,266.6">
-            <DataGrid x:Name="ExpensesTable">
-                <DataGrid.Columns >
-                    <DataGridTextColumn Header="№" Binding="{Binding Number}" Width="50"/>
-                    <DataGridTextColumn Header="Date and time" Binding="{Binding DisplayDate}" Width="200"/>
-                    <DataGridTextColumn Header="Type" Binding="{Binding Type}" MinWidth="150" />
-                    <DataGridTextColumn Header="Subtype" Binding="{Binding Subtype}" Width="150" />
+        <Grid x:Name="MainTable" Margin="250,60,0,280.6">
+            <DataGrid x:Name="ExpensesTable" MouseDown="ExpensesTable_MouseDown" IsReadOnly="True">
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Name="SortDate" Header="Sort by date" Click="SortDate_Click"/>
+                        <MenuItem Name="SortType" Header="Sort by type" Click="SortType_Click"/>
+                        <MenuItem Name="SortSubtype" Header="Sort by subtype" Click="SortSubtype_Click"/>
+                        <MenuItem Name="SortSum" Header="Sort by sum" Click="SortSum_Click"/>
+                        <MenuItem Name="SortCurrency" Header="Sort by currency" Click="SortCurrency_Click"/>
+                        <Separator/>
+                        <MenuItem Name="ClearList" Header="Clear the list" Click="ClearList_Click"/>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="№" Binding="{Binding Number}" Width="70"/>
+                    <DataGridTextColumn Header="Date and time" Binding="{Binding DisplayDate}" Width="250"/>
+                    <DataGridTextColumn Header="Type" Binding="{Binding Type}" MinWidth="200" />
+                    <DataGridTextColumn Header="Subtype" Binding="{Binding Subtype}" Width="200" />
                     <DataGridTextColumn Header="Sum" Binding="{Binding Sum}" MinWidth="90" />
-                    <DataGridTextColumn Header="Currency" Binding="{Binding Currency}" MinWidth="90" />
-                    <DataGridTextColumn Header="Exchange Rate" Binding="{Binding ExchangeRate}" MinWidth="90" />
+                    <DataGridTextColumn Header="Currency" Binding="{Binding Currency}" MinWidth="110" />
+                    <DataGridTextColumn Header="Exchange Rate" Binding="{Binding ExchangeRate}" MinWidth="110" />
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
 
-        <Grid x:Name="ChangeActions" Margin="250 531 0 0">
+        <Grid x:Name="ChangeActions" Margin="250 521 0 0">
 
         </Grid>
     </Grid>

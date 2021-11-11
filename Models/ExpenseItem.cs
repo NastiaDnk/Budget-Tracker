@@ -117,14 +117,14 @@ namespace BudgetTracker.Models
 
         }
 
-        public ExpenseItem(string sTime, string sType, string sSubtype, string sSum, string sCurrency, string sRate)
+        public ExpenseItem(string sTime, string sType, string sSubtype, string sSum, string sCurrency, string sRate)//Constructor with strings
         {
             if (!DateTime.TryParse(sTime, out _time))
             {
                 Exception ex = new Exception("Invalid date and time. Please, check your data!");
                 throw ex;
             }
-            _displayDate = _time.ToString("dd.MM.yyyy hh:mm:ss");
+            _displayDate = _time.ToString("dd.MM.yyyy HH:mm:ss");
             _type = sType;
             _subtype = sSubtype;
             if (!double.TryParse(sSum, out _sum))
@@ -151,7 +151,7 @@ namespace BudgetTracker.Models
                 throw ex;
             }
         }
-        public ExpenseItem(int number, DateTime time, string type, string subtype, double sum, ExpenseCurrency currency, double exchangeRate)
+        public ExpenseItem(int number, DateTime time, string type, string subtype, double sum, ExpenseCurrency currency, double exchangeRate)//Constructor with data
         {
             _number = number;
             _time = time;
@@ -160,7 +160,7 @@ namespace BudgetTracker.Models
             _sum = sum;
             _currency = currency;
             _exchangeRate = exchangeRate;
-            _displayDate = _time.ToString("dd.MM.yyyy hh:mm:ss");
+            _displayDate = _time.ToString("dd.MM.yyyy HH:mm:ss");
         }
 
         public ExpenseItem(ExpenseItem other) //Copy constructor
@@ -184,7 +184,7 @@ namespace BudgetTracker.Models
 
         public void ToStringDate()
         {
-            _displayDate = _time.ToString("dd.MM.yyyy hh:mm:ss");
+            _displayDate = _time.ToString("dd.MM.yyyy HH:mm:ss");
         }
 
 

@@ -5,8 +5,42 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BudgetTracker.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DesignHeight="266.6" d:DesignWidth="1100" Background="White">
     <Grid>
-            
+        <materialDesign:TransitioningContent x:Name="TrainsitionContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.8}">
+            <Grid Margin="0 40">
+                <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="22,0,0,-47.6">
+                    <ListViewItem Width="402">
+                        <StackPanel Orientation="Horizontal" >
+                            <StackPanel>
+                                <StackPanel  Orientation="Horizontal" Background="#FFF0B78D" Width="80" Height="80">
+                                <materialDesign:PackIcon Kind="FileImport" VerticalAlignment="Center" Width="60" Height="60" Margin="12"/>
+                            </StackPanel>
+                            <TextBlock Height="3" VerticalAlignment="Bottom" Margin="0,0,0,-0.6" Width="80" Background="#7E57C2"/>
+                        </StackPanel>
+                        <Button x:Name="ReadFromFileBtn" Width="300" Height="80" Background="#FFF0B78D" Click="ReadFromFileBtn_Click_1">
+                                <TextBlock Text="Read data from file"  FontSize="26" TextWrapping="Wrap"/>
+                            </Button>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Width="402">
+                        <StackPanel Orientation="Horizontal" >
+                            <StackPanel>
+                                <StackPanel  Orientation="Horizontal" Background="#FFF0B78D" Width="80" Height="80">
+                                <materialDesign:PackIcon Kind="FileExport" VerticalAlignment="Center" Width="60" Height="60" Margin="12"/>
+                            </StackPanel>
+                            <TextBlock Height="3" VerticalAlignment="Bottom" Margin="0,0,0,-0.6" Width="80" Background="#7E57C2"/>
+                        </StackPanel>
+                        <Button x:Name="WriteToFileBtn" Width="300" Height="80" Background="#FFF0B78D" Click="WriteToFileBtn_Click">
+                                <TextBlock Text="Write data to file"  FontSize="26" TextWrapping="Wrap"/>
+                            </Button>
+                            
+                        </StackPanel>
+                    </ListViewItem>
+                </ListView>
+            </Grid>
+        </materialDesign:TransitioningContent>
+
     </Grid>
 </UserControl>

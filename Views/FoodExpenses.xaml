@@ -5,8 +5,50 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BudgetTracker.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DesignHeight="266.6" d:DesignWidth="1100" Background="White">
+    <Grid x:Name="MainGrid" >
+        <materialDesign:TransitioningContent x:Name="TrainsitionContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.8}">
+            <Grid>
+                <Grid>
+                    <StackPanel>
+                <Grid Height="40" VerticalAlignment="Top" Background="#FFF0B78D" Margin="150,0,150,0">
+                    
+                        <StackPanel Orientation="Horizontal" Background="#FFF0B78D" Margin="0,0,38,0">
+                        <materialDesign:PackIcon Kind="Food" VerticalAlignment="Center" Width="30" Height="30" Margin="25,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" FontSize="24" TextAlignment="Center" Background="#FFF0B78D" Width="742" Text="Average number of food expenses less than 20 UAH in a month" Margin="0,4"/>
+                    </StackPanel>
+                    
+                </Grid>
+                    <TextBlock Height="5" VerticalAlignment="Bottom" Margin="0,0,0,-0.6" Width="800" Background="#7E57C2"/>
+                    </StackPanel>
+                </Grid>
+                <DataGrid x:Name="averageRez" Width="450" Height="205" Margin="630 50 0 0">
+                    <DataGrid.Columns >
+                        <DataGridTextColumn Header="Month" Binding="{Binding Month}" Width="150"/>
+                        <DataGridTextColumn Header="Number of expenses" Binding="{Binding ExpenseCount}" Width="250"/>
+                    </DataGrid.Columns >
+                </DataGrid>
+                <Grid Width="273" Height="160" HorizontalAlignment="Left" Margin="10 50 0 0">
+                    <StackPanel Orientation="Horizontal" Margin="0,0,29,30">
+                        <StackPanel Height="85">
+                            <StackPanel  Orientation="Horizontal" Background="#FFF0B78D" Width="80" Height="80">
+                                <materialDesign:PackIcon Kind="TagSearch" VerticalAlignment="Center" Width="60" Height="60" Margin="12"/>
+                            </StackPanel>
+                            <TextBlock Height="5" VerticalAlignment="Bottom" Margin="0,0,0,-0.6" Width="80" Background="#7E57C2"/>
+                        </StackPanel>
+                        <Button x:Name="FindBtn" Width="150" Height="80" Background="#FFF0B78D" Click="FindBtn_Click">
+                            <TextBlock Text="Search"  FontSize="26" TextWrapping="Wrap"/>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+                <Grid Width="350" Height="70" HorizontalAlignment="Left" Margin="270 50 0 0">
+                    <TextBlock x:Name="Result" FontSize="24" TextAlignment="Center" Background="#FFF0B78D" Width="250" Height="70" Margin="0 0 0 30">
+
+                    </TextBlock>
+                    
+                </Grid>
+            </Grid>
+        </materialDesign:TransitioningContent>
     </Grid>
 </UserControl>

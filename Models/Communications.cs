@@ -29,17 +29,6 @@ namespace BudgetTracker.Models
             {
                 ShowTableCategory?.Invoke(ex);
             }
-
-            public void WriteToFile()
-            {
-                WriteTo?.Invoke();
-            }
-
-            public void CheckNull()
-            {
-                Check?.Invoke();
-            }
-
             public void CreateNewList(string sTime, string sType, string sSubtype, string sSum, string sCurrency, string sRate)
             {
                 CreateList?.Invoke(sTime, sType, sSubtype, sSum, sCurrency, sRate);

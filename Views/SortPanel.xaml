@@ -5,8 +5,85 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BudgetTracker.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DesignHeight="266.6" d:DesignWidth="1100">
+    <Grid x:Name="MainGrid" Background="White">
+        <materialDesign:TransitioningContent x:Name="TrainsitionContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.8}">
+            <Grid>
+                <Grid Width="270" HorizontalAlignment="Left" Margin="300,35,0,22.4" >
+                    <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                        <ListViewItem>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel>
+                                    <StackPanel  Orientation="Horizontal" Background="#FFF0B78D" Width="50" Height="49">
+                                    <materialDesign:PackIcon Kind="Calendar" VerticalAlignment="Center" Margin="18"/>
+                                </StackPanel>
+                                <TextBlock Height="3" VerticalAlignment="Bottom" Margin="0,0,0,-0.6" Width="50" Background="#7E57C2"/>
+                            </StackPanel>
+                            <Button x:Name="DateSortBtn" Width="190" Height="48" Background="#FFF0B78D" Click="DateSortBtn_Click">
+                                    <TextBlock Text="Sort by date"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" TextWrapping="Wrap"/>
+                                </Button>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel>
+                                    <StackPanel  Orientation="Horizontal" Background="#FFF0B78D" Width="50" Height="49">
+                                    <materialDesign:PackIcon Kind="FormatListBulleted" VerticalAlignment="Center" Margin="18"/>
+                                </StackPanel>
+                                <TextBlock Height="3" VerticalAlignment="Bottom" Margin="0,0,0,-0.6" Width="50" Background="#7E57C2"/>
+                            </StackPanel>
+                            <Button x:Name="TypeSortBtn" Width="190" Height="48" Background="#FFF0B78D" Click="TypeSortBtn_Click">
+                                    <TextBlock Text="Sort by type"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" TextWrapping="Wrap"/>
+                                </Button>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel>
+                                    <StackPanel  Orientation="Horizontal" Background="#FFF0B78D" Width="50" Height="49">
+                                    <materialDesign:PackIcon Kind="FormatListBulletedType" VerticalAlignment="Center" Margin="18"/>
+                                </StackPanel>
+                                <TextBlock Height="3" VerticalAlignment="Bottom" Margin="0,0,0,-0.6" Width="50" Background="#7E57C2"/>
+                            </StackPanel>
+                            <Button x:Name="SubtypeSortBtn" Width="190" Height="48" Background="#FFF0B78D"  Click="SubtypeSortBtn_Click">
+                                    <TextBlock Text="Sort by subtype"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" TextWrapping="Wrap"/>
+                                </Button>
+                            </StackPanel>
+                        </ListViewItem>
+                    </ListView>
+                </Grid>
+                <Grid Width="270" HorizontalAlignment="Right" Margin="0 70 260 35">
+                    <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListViewItem>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel>
+                                    <StackPanel  Orientation="Horizontal" Background="#FFF0B78D" Width="50" Height="49">
+                                    <materialDesign:PackIcon Kind="CurrencyGbp" VerticalAlignment="Center" Margin="18"/>
+                                </StackPanel>
+                                <TextBlock Height="3" VerticalAlignment="Bottom" Margin="0,0,0,-0.6" Width="50" Background="#7E57C2"/>
+                            </StackPanel>
+                            <Button x:Name="CurrencySortBtn" Width="190" Height="48" Background="#FFF0B78D"  Click="CurrencySortBtn_Click">
+                                    <TextBlock Text="Sort by currency"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" TextWrapping="Wrap"/>
+                                </Button>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel>
+                                    <StackPanel  Orientation="Horizontal" Background="#FFF0B78D" Width="50" Height="49">
+                                    <materialDesign:PackIcon Kind="Basket" VerticalAlignment="Center" Margin="18"/>
+                                </StackPanel>
+                                <TextBlock Height="3" VerticalAlignment="Bottom" Margin="0,0,0,-0.6" Width="50" Background="#7E57C2"/>
+                            </StackPanel>
+                            <Button x:Name="SumSortBtn" Width="190" Height="48" Background="#FFF0B78D" Click="SumSortBtn_Click">
+                                    <TextBlock Text="Sort by sum (UAH)"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" TextWrapping="Wrap"/>
+                                </Button>
+                            </StackPanel>
+                        </ListViewItem>
+                    </ListView>
+                </Grid>
+            </Grid>
+        </materialDesign:TransitioningContent>
     </Grid>
 </UserControl>
